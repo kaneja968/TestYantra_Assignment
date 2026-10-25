@@ -13,6 +13,9 @@ public class PetApi {
     public Response update(Object pet) {
         return given().baseUri(baseUrl).contentType("application/json").body(pet).when().put("/pet");
     }
+     public Response patch() {
+        return given().baseUri(baseUrl).when().patch("/pet");
+    }
     public Response get(long id) {
         return given().baseUri(baseUrl).pathParam("petId", id).when().get("/pet/{petId}");
     }
