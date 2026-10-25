@@ -8,6 +8,7 @@ Production-style API test project for the Swagger Petstore **v2** PET endpoints.
 - `PUT /pet`: update the pet and assert the changed name/status via GET.
 - `DELETE /pet/{petId}`: delete the test pet and assert a successful 2xx response.
 - Negative check: GET an unknown ID and assert HTTP 404.
+- Unsupported-method check: send `PATCH /pet` and assert HTTP 405 Method Not Allowed.
 - Configuration via `api.baseUrl` system property; API calls encapsulated in a client; model records; unique test ID.
 
 Official API documentation: https://petstore.swagger.io/ (base URL `https://petstore.swagger.io/v2`).
