@@ -1,0 +1,6 @@
+com/greentube/petstore/model/Pet.class
+com/greentube/petstore/config/ApiConfig.class
+com/greentube/petstore/client/PetApi.class
+com/greentube/petstore/model/Pet$Tag.class
+com/greentube/petstore/tests/PetCrudTest.class
+com/greentube/petstore/model/Pet$Category.class

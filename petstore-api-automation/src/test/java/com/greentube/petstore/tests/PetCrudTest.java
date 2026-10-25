@@ -24,10 +24,13 @@ class PetCrudTest {
     void postCreatesPetAndGetReturnsMatchingRecord() {
         createdPet = pet("automation-dog-" + petId, "available");
         Response post = api.create(createdPet);
+        System.out.println("POST status code: " + post.statusCode());
+        System.out.println("POST response body: " + post.asString());
         assertTrue(post.statusCode() >= 200 && post.statusCode() < 300,
                 "POST should return a 2xx response; body: " + post.asString());
 
         Response get = api.get(petId);
+        System.out.println("GET status code: " + get.statusCode());
         assertEquals(200, get.statusCode(), "GET should return 200; body: " + get.asString());
         Pet actual = get.as(Pet.class);
         assertEquals(createdPet.id(), actual.id());
@@ -42,10 +45,14 @@ class PetCrudTest {
     void putUpdatesExistingPet() {
         Pet updated = pet("updated-dog-" + petId, "sold");
         Response response = api.update(updated);
+        System.out.println("PUT status code: " + response.statusCode());
+         System.out.println("PUT response body: " + response.asString());
+       
         assertTrue(response.statusCode() >= 200 && response.statusCode() < 300,
                 "PUT should return a 2xx response; body: " + response.asString());
 
         Response get = api.get(petId);
+        System.out.println("GET after PUT status code: " + get.statusCode());
         assertEquals(200, get.statusCode());
         Pet actual = get.as(Pet.class);
         assertEquals(updated.name(), actual.name());
@@ -55,6 +62,7 @@ class PetCrudTest {
     @Test @Order(3)
     void deleteRemovesPet() {
         Response response = api.delete(petId);
+        System.out.println("DELETE status code: " + response.statusCode());
         assertTrue(response.statusCode() >= 200 && response.statusCode() < 300,
                 "DELETE should return a 2xx response; body: " + response.asString());
     }
@@ -63,6 +71,7 @@ class PetCrudTest {
     void getUnknownPetReturnsNotFound() {
         long unknownId = 9_000_000_000L;
         Response response = api.get(unknownId);
+        System.out.println("GET unknown pet status code: " + response.statusCode());
         assertEquals(404, response.statusCode(),
                 "Unknown pet should return 404 on the demo API. If the shared service behaves differently, inspect response: "
                         + response.asString());

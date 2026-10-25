@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.greentube.petstore.tests.PetCrudTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.242 s -- in com.greentube.petstore.tests.PetCrudTest
