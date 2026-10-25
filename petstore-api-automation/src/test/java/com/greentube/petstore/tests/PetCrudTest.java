@@ -67,4 +67,10 @@ class PetCrudTest {
                 "Unknown pet should return 404 on the demo API. If the shared service behaves differently, inspect response: "
                         + response.asString());
     }
+      @Test @Order(5)
+    void unsupportedPatchMethodReturnsMethodNotAllowed() {
+        Response response = api.patch();
+        System.out.println("PATCH status code: " + response.statusCode());
+        assertEquals(405, response.statusCode(), "PATCH /pet should return 405 Method Not Allowed");
+    }
 }
