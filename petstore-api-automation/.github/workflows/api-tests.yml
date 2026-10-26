@@ -1,0 +1,33 @@
+name: API Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Run tests and generate report
+        working-directory: petstore-api-automation
+        run: mvn --batch-mode --no-transfer-progress clean verify
+        env:
+          API_BASE_URL: ${{ vars.API_BASE_URL }}
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-reports
+          path: |
+            petstore-api-automation/target/reports/
+            petstore-api-automation/target/spark-report/
+            petstore-api-automation/target/surefire-reports/
+          if-no-files-found: warn
